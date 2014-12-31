@@ -66,18 +66,24 @@ if __FILE__ == $PROGRAM_NAME
   prompt = 'do you need it to have constant lookup time?'
   lookup = MyIO.get_yn_input(prompt, %w(y n))
 
-  structure = case [order, lookup]
-              when [false, false]
-                'linked_list'
-              when [false, true]
-                'hash_table'
-              when [true, false]
-                'linked_list'
-              when [true, true]
-                'heap'
-              end
+  # get the data we're gonna store
+  puts 'Enter, separated by spaces, the fields you want to store at each node.'
+  fields = gets.chomp.split(' ')
 
-    
-    
+  ds_file = open('ds.rb', 'w')
+  #now actually generate the needed data structure
+  file_text = ['class Node']
+  case [order, lookup]
+  when [false, false]
+    # linked list
+    fields.map { |x| 'attr_accessor :' + x }
+    file_text << fields.join('\n')
 
+  when [false, true]
+    # hash_table
+  when [true, false]
+    # linked_list
+  when [true, true]
+    # heap
+  end
 end
