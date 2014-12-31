@@ -46,5 +46,8 @@ if __FILE__ == $PROGRAM_NAME
   # is it important to have constant lookup?
   prompt = 'do you need it to have constant lookup time?'
   lookup = MyIO.get_yn_input(prompt, %w(y n))
+  
+  case [order, lookup]
+  when 
 
 end
