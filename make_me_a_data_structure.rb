@@ -8,7 +8,7 @@ pick one based on what they want for access time
 =end
 
 # simple IO function(s)
-module IIO
+module IO
   # loops until a valid input comes
   def get_valid_input(inputs)
     loop do
@@ -23,7 +23,7 @@ module IIO
 end
 
 if __FILE__ == $PROGRAM_NAME
-  include IIO
+  include IO
   puts 'Is the order you put the data in important? [y/n]'
   case IO.get_valid_input(%w(y n))
   when 'y'
