@@ -21,11 +21,6 @@ class HashTable
   @table = Array.new(1000)
 end
 
-# heap class
-class Heap
-  attr_accessor :root
-end
-
 # simple IO function(s)
 module MyIO
   # loops until a valid input comes
@@ -71,19 +66,33 @@ if __FILE__ == $PROGRAM_NAME
   fields = gets.chomp.split(' ')
 
   ds_file = open('ds.rb', 'w')
-  #now actually generate the needed data structure
-  file_text = ['class Node']
+  # now actually generate the needed data structure
+  file_text = 'class Node\n'
   case [order, lookup]
   when [false, false]
-    # linked list
-    fields.map { |x| 'attr_accessor :' + x }
-    file_text << fields.join('\n')
-
-  when [false, true]
+    # node class
+    file_text << fields.map { |x| 'attr_accessor :' + x }.join('\n')
+    file_text << '\n  def initialize(' + fields.join(', ') + ')\n'
+    file_text << 'end \n\n'
+    # linked list class
+    file_text << 'class Stack\n'
+    file_text << '  attr_accessor :head\n'
+    file_text << '  def initialize()\n'
+    file_text << '    head = Node.new(' + fields.join(', ') + '\n'
+    file_text << '  end\n'
+    file_text << '  \n'
+    file_text << '  def push(newNode)\n'
+    file_text << '    newNode.next = @head\n'
+    file_text << '    @head=newNode\n'
+    file_text << '  end\n'
+    file_text << '  def pop()\n'
+    file_text << '    temp = @head.next\n'
+    file_text << '    @head.next = @head.next.next\n'
+    file_text << '    return temp\n'
+    file_text << '  end\n'
+    file_text << 'end\n\n'
+    
+  else
     # hash_table
-  when [true, false]
-    # linked_list
-  when [true, true]
-    # heap
   end
 end
