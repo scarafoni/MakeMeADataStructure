@@ -4,22 +4,8 @@ several data structures tailored to their needs
 =end
 
 # the basic node class
-# LL has a next
-# heap has lchild rchild
+# stack has a next
 # hash table has nothing
-# these are all monkey patched later
-class Node
-end
-
-# the Linked List class
-class LinkedList
-  attr_accessor :head
-end
-
-# the hashtable class
-class HashTable
-  @table = Array.new(1000)
-end
 
 # simple IO function(s)
 module MyIO
@@ -74,7 +60,7 @@ if __FILE__ == $PROGRAM_NAME
     file_text << fields.map { |x| 'attr_accessor :' + x }.join('\n')
     file_text << '\n  def initialize(' + fields.join(', ') + ')\n'
     file_text << 'end \n\n'
-    # linked list class
+    # stack class
     file_text << 'class Stack\n'
     file_text << '  attr_accessor :head\n'
     file_text << '  def initialize()\n'
