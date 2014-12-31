@@ -20,7 +20,11 @@ end
 class HashTable
   @table = Array.new(1000)
 end
-  
+
+# heap class
+class Heap
+  attr_accessor :root
+end
 
 # simple IO function(s)
 module MyIO
